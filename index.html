@@ -2,43 +2,119 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Oussama BEY — Researcher in Automatic Control and Robotics</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Oussama BEY — Researcher in Automatic Control and Robotics
+    </title>
 
     <style>
+        :root {
+            --primary: #3157a4;
+            --primary-dark: #203f7f;
+            --text: #172033;
+            --muted: #586174;
+            --background: #f5f7fa;
+            --white: #ffffff;
+            --border: #e1e6ef;
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
 
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: #f5f7fa;
-            color: #172033;
+        html {
+            scroll-behavior: smooth;
         }
 
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* Navigation bar */
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.96);
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.04);
+        }
+
+        .nav-container {
+            width: 100%;
+            max-width: 1200px;
+            min-height: 74px;
+            margin: auto;
+            padding: 0 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            color: var(--text);
+            font-size: 21px;
+            font-weight: 700;
+            text-decoration: none;
+            letter-spacing: 0.5px;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.25s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Hero section */
+
         .hero {
-            min-height: 100vh;
+            min-height: calc(100vh - 74px);
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 40px 20px;
+            padding: 50px 20px;
         }
 
         .hero-content {
             width: 100%;
             max-width: 1000px;
             padding: 70px;
-            background: white;
+            background: var(--white);
             border-radius: 18px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
         }
 
         .label {
             margin-bottom: 18px;
-            color: #3157a4;
+            color: var(--primary);
             font-size: 14px;
             font-weight: bold;
             letter-spacing: 2px;
@@ -53,7 +129,7 @@
 
         .title {
             max-width: 700px;
-            color: #586174;
+            color: var(--muted);
             font-size: 24px;
             line-height: 1.5;
         }
@@ -62,11 +138,95 @@
             width: 80px;
             height: 4px;
             margin-top: 30px;
-            background: #3157a4;
+            background: var(--primary);
             border-radius: 4px;
         }
 
-        @media (max-width: 700px) {
+        /* Website sections */
+
+        .section {
+            scroll-margin-top: 90px;
+            padding: 90px 20px;
+        }
+
+        .section:nth-child(even) {
+            background: var(--white);
+        }
+
+        .section-container {
+            width: 100%;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .section-label {
+            margin-bottom: 10px;
+            color: var(--primary);
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .section-title {
+            margin-bottom: 18px;
+            font-size: 38px;
+            line-height: 1.2;
+        }
+
+        .section-description {
+            max-width: 750px;
+            color: var(--muted);
+            font-size: 17px;
+        }
+
+        .placeholder {
+            margin-top: 30px;
+            padding: 30px;
+            background: var(--background);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            color: var(--muted);
+        }
+
+        /* Footer */
+
+        footer {
+            padding: 28px 20px;
+            background: var(--text);
+            color: rgba(255, 255, 255, 0.75);
+            text-align: center;
+            font-size: 14px;
+        }
+
+        /* Mobile layout */
+
+        @media (max-width: 850px) {
+            .nav-container {
+                flex-direction: column;
+                padding-top: 18px;
+                padding-bottom: 18px;
+                gap: 15px;
+            }
+
+            .nav-links {
+                width: 100%;
+                gap: 18px;
+                overflow-x: auto;
+                justify-content: flex-start;
+                padding-bottom: 4px;
+            }
+
+            .nav-links a {
+                white-space: nowrap;
+            }
+
+            .hero {
+                min-height: auto;
+                padding-top: 50px;
+                padding-bottom: 50px;
+            }
+
             .hero-content {
                 padding: 45px 28px;
             }
@@ -78,23 +238,113 @@
             .title {
                 font-size: 20px;
             }
+
+            .section {
+                padding: 65px 22px;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
         }
     </style>
 </head>
 
 <body>
-    <main class="hero">
-        <section class="hero-content">
-            <p class="label">Academic Portfolio</p>
 
-            <h1>Oussama BEY</h1>
+    <header class="navbar">
+        <nav class="nav-container">
+            <a href="#home" class="logo">
+                Oussama <span>BEY</span>
+            </a>
 
-            <p class="title">
-                Researcher in Automatic Control and Robotics
-            </p>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#research">Research</a></li>
+                <li><a href="#publications">Publications</a></li>
+                <li><a href="#teaching">Teaching</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-            <div class="line"></div>
+    <main>
+
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <p class="label">Academic Portfolio</p>
+
+                <h1>Oussama BEY</h1>
+
+                <p class="title">
+                    Researcher in Automatic Control and Robotics
+                </p>
+
+                <div class="line"></div>
+            </div>
         </section>
+
+        <section class="section" id="about">
+            <div class="section-container">
+                <p class="section-label">About</p>
+                <h2 class="section-title">Professional Profile</h2>
+
+                <div class="placeholder">
+                    Your professional biography will be added here.
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="research">
+            <div class="section-container">
+                <p class="section-label">Research</p>
+                <h2 class="section-title">Research Interests</h2>
+
+                <div class="placeholder">
+                    Your main research areas will be added here.
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="publications">
+            <div class="section-container">
+                <p class="section-label">Publications</p>
+                <h2 class="section-title">Selected Publications</h2>
+
+                <div class="placeholder">
+                    Your journal and conference publications will be added here.
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="teaching">
+            <div class="section-container">
+                <p class="section-label">Teaching</p>
+                <h2 class="section-title">Teaching Experience</h2>
+
+                <div class="placeholder">
+                    Your courses and teaching experience will be added here.
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="contact">
+            <div class="section-container">
+                <p class="section-label">Contact</p>
+                <h2 class="section-title">Get in Touch</h2>
+
+                <div class="placeholder">
+                    Your professional email and academic links will be added here.
+                </div>
+            </div>
+        </section>
+
     </main>
+
+    <footer>
+        © 2026 Oussama BEY — Academic Portfolio
+    </footer>
+
 </body>
 </html>
