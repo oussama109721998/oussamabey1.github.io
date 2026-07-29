@@ -79,6 +79,7 @@
             border-bottom: 1px solid var(--line);
             box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
             backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
         }
 
         .topbar-upper {
@@ -418,8 +419,15 @@
             transform: translateY(-2px);
         }
 
+        /*
+         * Corrected profile card:
+         * z-index creates a local stacking context.
+         * inset gives equal spacing on all four sides.
+         */
+
         .hero-card {
             position: relative;
+            z-index: 0;
             padding: 2.1rem;
             border: 1px solid var(--line);
             border-radius: 14px;
@@ -431,13 +439,11 @@
         .hero-card::before {
             content: "";
             position: absolute;
-            top: -7px;
-            left: -7px;
+            inset: -8px;
             z-index: -1;
-            width: 100%;
-            height: 100%;
             border: 1.5px solid var(--accent);
-            border-radius: 14px;
+            border-radius: 20px;
+            pointer-events: none;
         }
 
         .photo-wrapper {
@@ -1127,9 +1133,9 @@
             }
 
             .hero-card {
-                width: 100%;
+                width: calc(100% - 16px);
                 max-width: 530px;
-                margin: 0 auto;
+                margin: 8px auto;
             }
 
             .page-inner {
@@ -1211,9 +1217,7 @@
 
 <body>
 
-    <!-- ========================================
-         TOP NAVIGATION
-    ========================================= -->
+    <!-- TOP NAVIGATION -->
 
     <header class="topbar">
 
@@ -1261,52 +1265,31 @@
             class="nav-tabs"
             aria-label="Main navigation"
         >
-            <button
-                class="nav-tab active"
-                data-page="home"
-            >
+            <button class="nav-tab active" data-page="home">
                 Home
             </button>
 
-            <button
-                class="nav-tab"
-                data-page="education"
-            >
+            <button class="nav-tab" data-page="education">
                 Education
             </button>
 
-            <button
-                class="nav-tab"
-                data-page="research"
-            >
+            <button class="nav-tab" data-page="research">
                 Research
             </button>
 
-            <button
-                class="nav-tab"
-                data-page="publications"
-            >
+            <button class="nav-tab" data-page="publications">
                 Publications
             </button>
 
-            <button
-                class="nav-tab"
-                data-page="teaching"
-            >
+            <button class="nav-tab" data-page="teaching">
                 Teaching
             </button>
 
-            <button
-                class="nav-tab"
-                data-page="activities"
-            >
+            <button class="nav-tab" data-page="activities">
                 Activities
             </button>
 
-            <button
-                class="nav-tab"
-                data-page="contact"
-            >
+            <button class="nav-tab" data-page="contact">
                 Contact
             </button>
         </nav>
@@ -1315,14 +1298,9 @@
 
     <main class="pages-wrapper">
 
-        <!-- ========================================
-             HOME
-        ========================================= -->
+        <!-- HOME -->
 
-        <section
-            class="page active"
-            id="page-home"
-        >
+        <section class="page active" id="page-home">
 
             <div class="hero-page">
 
@@ -1487,10 +1465,7 @@
                 <div class="stats-inner">
 
                     <div>
-                        <div
-                            class="stat-number"
-                            data-target="8"
-                        >
+                        <div class="stat-number" data-target="8">
                             0
                         </div>
 
@@ -1500,10 +1475,7 @@
                     </div>
 
                     <div>
-                        <div
-                            class="stat-number"
-                            data-target="3"
-                        >
+                        <div class="stat-number" data-target="3">
                             0
                         </div>
 
@@ -1546,14 +1518,9 @@
 
         </section>
 
-        <!-- ========================================
-             EDUCATION
-        ========================================= -->
+        <!-- EDUCATION -->
 
-        <section
-            class="page"
-            id="page-education"
-        >
+        <section class="page" id="page-education">
 
             <div class="page-inner">
 
@@ -1665,14 +1632,9 @@
 
         </section>
 
-        <!-- ========================================
-             RESEARCH
-        ========================================= -->
+        <!-- RESEARCH -->
 
-        <section
-            class="page"
-            id="page-research"
-        >
+        <section class="page" id="page-research">
 
             <div class="page-inner">
 
@@ -1839,14 +1801,9 @@
 
         </section>
 
-        <!-- ========================================
-             PUBLICATIONS
-        ========================================= -->
+        <!-- PUBLICATIONS -->
 
-        <section
-            class="page"
-            id="page-publications"
-        >
+        <section class="page" id="page-publications">
 
             <div class="page-inner">
 
@@ -2368,14 +2325,9 @@
 
         </section>
 
-        <!-- ========================================
-             TEACHING
-        ========================================= -->
+        <!-- TEACHING -->
 
-        <section
-            class="page"
-            id="page-teaching"
-        >
+        <section class="page" id="page-teaching">
 
             <div class="page-inner">
 
@@ -2508,14 +2460,9 @@
 
         </section>
 
-        <!-- ========================================
-             ACTIVITIES
-        ========================================= -->
+        <!-- ACTIVITIES -->
 
-        <section
-            class="page"
-            id="page-activities"
-        >
+        <section class="page" id="page-activities">
 
             <div class="page-inner">
 
@@ -2612,14 +2559,9 @@
 
         </section>
 
-        <!-- ========================================
-             CONTACT
-        ========================================= -->
+        <!-- CONTACT -->
 
-        <section
-            class="page"
-            id="page-contact"
-        >
+        <section class="page" id="page-contact">
 
             <div class="page-inner">
 
