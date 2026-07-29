@@ -2,31 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>
-        Oussama BEY — Researcher in Automatic Control and Robotics
-    </title>
+    <title>Oussama BEY — Automatic Control and Robotics</title>
 
     <style>
         :root {
-            --primary: #3157a4;
-            --primary-dark: #203f7f;
+            --blue: #3157a4;
+            --blue-dark: #1d3974;
+            --blue-light: #eaf0ff;
             --text: #172033;
-            --muted: #586174;
-            --background: #f5f7fa;
+            --muted: #606b7d;
+            --background: #f4f7fb;
             --white: #ffffff;
-            --border: #e1e6ef;
+            --border: #dfe5ef;
         }
 
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
         html {
@@ -37,26 +32,27 @@
             font-family: Arial, Helvetica, sans-serif;
             background: var(--background);
             color: var(--text);
-            line-height: 1.6;
+            line-height: 1.7;
         }
 
-        /* Navigation bar */
+        /* Top navigation */
 
-        .navbar {
-            position: sticky;
+        .topbar {
+            position: fixed;
             top: 0;
+            left: 0;
+            right: 0;
             z-index: 1000;
-            background: rgba(255, 255, 255, 0.96);
+            background: rgba(255, 255, 255, 0.97);
             border-bottom: 1px solid var(--border);
-            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.04);
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
         }
 
-        .nav-container {
-            width: 100%;
+        .topbar-upper {
             max-width: 1200px;
-            min-height: 74px;
+            height: 58px;
             margin: auto;
-            padding: 0 25px;
+            padding: 0 28px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -67,184 +63,354 @@
             font-size: 21px;
             font-weight: 700;
             text-decoration: none;
-            letter-spacing: 0.5px;
+            cursor: pointer;
         }
 
         .logo span {
-            color: var(--primary);
+            color: var(--blue);
         }
 
-        .nav-links {
-            list-style: none;
+        .topbar-title {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .nav-tabs {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 18px;
+            display: flex;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+
+        .nav-tabs::-webkit-scrollbar {
+            display: none;
+        }
+
+        .nav-tab {
+            padding: 13px 18px;
+            color: var(--muted);
+            background: transparent;
+            border: none;
+            border-bottom: 3px solid transparent;
+            font-family: inherit;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: 0.25s ease;
+        }
+
+        .nav-tab:hover {
+            color: var(--blue);
+        }
+
+        .nav-tab.active {
+            color: var(--blue);
+            border-bottom-color: var(--blue);
+        }
+
+        /* Pages */
+
+        .pages-wrapper {
+            padding-top: 105px;
+            min-height: 100vh;
+        }
+
+        .page {
+            display: none;
+            min-height: calc(100vh - 105px);
+            animation: pageFade 0.4s ease;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes pageFade {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .page-inner {
+            width: 100%;
+            max-width: 1100px;
+            margin: auto;
+            padding: 60px 28px 80px;
+        }
+
+        .page-heading {
             display: flex;
             align-items: center;
-            gap: 28px;
+            gap: 16px;
+            margin-bottom: 42px;
         }
 
-        .nav-links a {
-            color: var(--muted);
-            font-size: 14px;
+        .page-number {
+            color: var(--blue);
+            font-size: 36px;
+            font-weight: 300;
+            opacity: 0.45;
+        }
+
+        .page-title {
+            font-size: 32px;
             font-weight: 600;
-            text-decoration: none;
-            transition: color 0.25s ease;
         }
 
-        .nav-links a:hover {
-            color: var(--primary);
+        .page-line {
+            flex: 1;
+            height: 1px;
+            background: var(--border);
         }
 
-        /* Hero section */
+        /* Home */
 
-        .hero {
-            min-height: calc(100vh - 74px);
+        .hero-page {
+            min-height: calc(100vh - 105px);
+            padding: 45px 28px;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 50px 20px;
         }
 
-        .hero-content {
+        .hero-grid {
             width: 100%;
-            max-width: 1000px;
-            padding: 70px;
-            background: var(--white);
-            border-radius: 18px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+            max-width: 1100px;
+            display: grid;
+            grid-template-columns: 1.3fr 0.8fr;
+            gap: 60px;
+            align-items: center;
         }
 
-        .label {
+        .hero-label {
             margin-bottom: 18px;
-            color: var(--primary);
-            font-size: 14px;
-            font-weight: bold;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        h1 {
-            margin-bottom: 18px;
-            font-size: 64px;
-            line-height: 1.1;
-        }
-
-        .title {
-            max-width: 700px;
-            color: var(--muted);
-            font-size: 24px;
-            line-height: 1.5;
-        }
-
-        .line {
-            width: 80px;
-            height: 4px;
-            margin-top: 30px;
-            background: var(--primary);
-            border-radius: 4px;
-        }
-
-        /* Website sections */
-
-        .section {
-            scroll-margin-top: 90px;
-            padding: 90px 20px;
-        }
-
-        .section:nth-child(even) {
-            background: var(--white);
-        }
-
-        .section-container {
-            width: 100%;
-            max-width: 1000px;
-            margin: auto;
-        }
-
-        .section-label {
-            margin-bottom: 10px;
-            color: var(--primary);
+            color: var(--blue);
             font-size: 13px;
             font-weight: 700;
             letter-spacing: 2px;
             text-transform: uppercase;
         }
 
-        .section-title {
-            margin-bottom: 18px;
-            font-size: 38px;
-            line-height: 1.2;
+        .hero-name {
+            margin-bottom: 20px;
+            font-size: clamp(48px, 7vw, 76px);
+            line-height: 1.05;
         }
 
-        .section-description {
-            max-width: 750px;
+        .hero-name span {
+            color: var(--blue);
+        }
+
+        .hero-title {
+            max-width: 650px;
+            margin-bottom: 22px;
             color: var(--muted);
-            font-size: 17px;
+            font-size: 24px;
+            line-height: 1.5;
         }
 
-        .placeholder {
-            margin-top: 30px;
-            padding: 30px;
-            background: var(--background);
+        .hero-description {
+            max-width: 650px;
+            margin-bottom: 30px;
+            color: var(--muted);
+            font-size: 16px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .button {
+            padding: 12px 22px;
+            border-radius: 5px;
+            border: 1px solid var(--blue);
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            cursor: pointer;
+            transition: 0.25s ease;
+        }
+
+        .button-primary {
+            background: var(--blue);
+            color: var(--white);
+        }
+
+        .button-primary:hover {
+            background: var(--blue-dark);
+            transform: translateY(-2px);
+        }
+
+        .button-outline {
+            background: transparent;
+            color: var(--blue);
+        }
+
+        .button-outline:hover {
+            background: var(--blue-light);
+            transform: translateY(-2px);
+        }
+
+        .profile-card {
+            padding: 34px;
+            background: var(--white);
             border: 1px solid var(--border);
-            border-radius: 12px;
-            color: var(--muted);
+            border-radius: 16px;
+            box-shadow: 0 18px 50px rgba(32, 63, 127, 0.1);
         }
 
-        /* Footer */
+        .profile-circle {
+            width: 115px;
+            height: 115px;
+            margin: 0 auto 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--blue-light);
+            border: 3px solid var(--blue);
+            border-radius: 50%;
+            color: var(--blue);
+            font-size: 34px;
+            font-weight: 700;
+        }
 
-        footer {
-            padding: 28px 20px;
-            background: var(--text);
-            color: rgba(255, 255, 255, 0.75);
+        .profile-position {
+            margin-bottom: 8px;
+            text-align: center;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .profile-field {
+            margin-bottom: 22px;
+            color: var(--muted);
             text-align: center;
             font-size: 14px;
         }
 
-        /* Mobile layout */
+        .profile-details {
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+        }
+
+        .profile-detail {
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+
+        .profile-detail strong {
+            color: var(--blue);
+        }
+
+        /* General cards */
+
+        .content-card {
+            padding: 30px;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.04);
+        }
+
+        .placeholder-text {
+            color: var(--muted);
+            font-size: 16px;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .small-card {
+            padding: 26px;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            transition: 0.25s ease;
+        }
+
+        .small-card:hover {
+            border-color: var(--blue);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(49, 87, 164, 0.1);
+        }
+
+        .small-card h3 {
+            margin-bottom: 10px;
+            color: var(--blue);
+            font-size: 18px;
+        }
+
+        .small-card p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        /* Footer */
+
+        .footer {
+            padding: 24px;
+            background: var(--text);
+            color: rgba(255, 255, 255, 0.75);
+            text-align: center;
+            font-size: 13px;
+        }
+
+        /* Mobile */
 
         @media (max-width: 850px) {
-            .nav-container {
-                flex-direction: column;
-                padding-top: 18px;
-                padding-bottom: 18px;
-                gap: 15px;
+            .topbar-upper {
+                padding: 0 18px;
             }
 
-            .nav-links {
-                width: 100%;
-                gap: 18px;
-                overflow-x: auto;
-                justify-content: flex-start;
-                padding-bottom: 4px;
+            .topbar-title {
+                display: none;
             }
 
-            .nav-links a {
-                white-space: nowrap;
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 35px;
             }
 
-            .hero {
-                min-height: auto;
-                padding-top: 50px;
-                padding-bottom: 50px;
+            .profile-card {
+                max-width: 500px;
             }
 
-            .hero-content {
-                padding: 45px 28px;
+            .card-grid {
+                grid-template-columns: 1fr;
             }
 
-            h1 {
-                font-size: 42px;
+            .hero-name {
+                font-size: 48px;
             }
 
-            .title {
+            .hero-title {
                 font-size: 20px;
             }
 
-            .section {
-                padding: 65px 22px;
+            .page-inner {
+                padding: 45px 20px 65px;
             }
 
-            .section-title {
-                font-size: 32px;
+            .page-title {
+                font-size: 27px;
             }
         }
     </style>
@@ -252,99 +418,280 @@
 
 <body>
 
-    <header class="navbar">
-        <nav class="nav-container">
-            <a href="#home" class="logo">
+    <header class="topbar">
+        <div class="topbar-upper">
+            <a class="logo" onclick="switchPage('home')">
                 Oussama <span>BEY</span>
             </a>
 
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#research">Research</a></li>
-                <li><a href="#publications">Publications</a></li>
-                <li><a href="#teaching">Teaching</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
+            <div class="topbar-title">
+                Automatic Control and Robotics
+            </div>
+        </div>
+
+        <nav class="nav-tabs">
+            <button class="nav-tab active" data-page="home">Home</button>
+            <button class="nav-tab" data-page="education">Education</button>
+            <button class="nav-tab" data-page="research">Research</button>
+            <button class="nav-tab" data-page="publications">Publications</button>
+            <button class="nav-tab" data-page="teaching">Teaching</button>
+            <button class="nav-tab" data-page="activities">Activities</button>
+            <button class="nav-tab" data-page="contact">Contact</button>
         </nav>
     </header>
 
-    <main>
+    <main class="pages-wrapper">
 
-        <section class="hero" id="home">
-            <div class="hero-content">
-                <p class="label">Academic Portfolio</p>
+        <!-- HOME -->
 
-                <h1>Oussama BEY</h1>
+        <section class="page active" id="page-home">
+            <div class="hero-page">
+                <div class="hero-grid">
 
-                <p class="title">
-                    Researcher in Automatic Control and Robotics
-                </p>
+                    <div>
+                        <p class="hero-label">Academic Portfolio</p>
 
-                <div class="line"></div>
-            </div>
-        </section>
+                        <h1 class="hero-name">
+                            Oussama <span>BEY</span>
+                        </h1>
 
-        <section class="section" id="about">
-            <div class="section-container">
-                <p class="section-label">About</p>
-                <h2 class="section-title">Professional Profile</h2>
+                        <p class="hero-title">
+                            Researcher in Automatic Control and Robotics
+                        </p>
 
-                <div class="placeholder">
-                    Your professional biography will be added here.
+                        <p class="hero-description">
+                            Research interests include nonlinear control,
+                            intelligent systems, adaptive control,
+                            robotics and assistive technologies.
+                        </p>
+
+                        <div class="hero-buttons">
+                            <button
+                                class="button button-primary"
+                                onclick="switchPage('publications')"
+                            >
+                                Publications
+                            </button>
+
+                            <button
+                                class="button button-outline"
+                                onclick="switchPage('contact')"
+                            >
+                                Contact
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="profile-card">
+                        <div class="profile-circle">OB</div>
+
+                        <div class="profile-position">
+                            Researcher
+                        </div>
+
+                        <div class="profile-field">
+                            Automatic Control and Robotics
+                        </div>
+
+                        <div class="profile-details">
+                            <div class="profile-detail">
+                                <strong>Expertise:</strong>
+                                Nonlinear and intelligent control
+                            </div>
+
+                            <div class="profile-detail">
+                                <strong>Applications:</strong>
+                                Robotics and assistive devices
+                            </div>
+
+                            <div class="profile-detail">
+                                <strong>Location:</strong>
+                                France
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
 
-        <section class="section" id="research">
-            <div class="section-container">
-                <p class="section-label">Research</p>
-                <h2 class="section-title">Research Interests</h2>
+        <!-- EDUCATION -->
 
-                <div class="placeholder">
-                    Your main research areas will be added here.
+        <section class="page" id="page-education">
+            <div class="page-inner">
+                <div class="page-heading">
+                    <span class="page-number">01</span>
+                    <h2 class="page-title">Education</h2>
+                    <div class="page-line"></div>
+                </div>
+
+                <div class="content-card">
+                    <p class="placeholder-text">
+                        Your academic degrees and institutions will be added here.
+                    </p>
                 </div>
             </div>
         </section>
 
-        <section class="section" id="publications">
-            <div class="section-container">
-                <p class="section-label">Publications</p>
-                <h2 class="section-title">Selected Publications</h2>
+        <!-- RESEARCH -->
 
-                <div class="placeholder">
-                    Your journal and conference publications will be added here.
+        <section class="page" id="page-research">
+            <div class="page-inner">
+                <div class="page-heading">
+                    <span class="page-number">02</span>
+                    <h2 class="page-title">Research</h2>
+                    <div class="page-line"></div>
+                </div>
+
+                <div class="card-grid">
+                    <div class="small-card">
+                        <h3>Nonlinear Control</h3>
+                        <p>
+                            Adaptive, robust and output-feedback control
+                            of nonlinear systems.
+                        </p>
+                    </div>
+
+                    <div class="small-card">
+                        <h3>Artificial Intelligence</h3>
+                        <p>
+                            Neural networks, reinforcement learning
+                            and intelligent control.
+                        </p>
+                    </div>
+
+                    <div class="small-card">
+                        <h3>Robotics</h3>
+                        <p>
+                            Assistive robotics, orthotic devices
+                            and human–robot interaction.
+                        </p>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="section" id="teaching">
-            <div class="section-container">
-                <p class="section-label">Teaching</p>
-                <h2 class="section-title">Teaching Experience</h2>
+        <!-- PUBLICATIONS -->
 
-                <div class="placeholder">
-                    Your courses and teaching experience will be added here.
+        <section class="page" id="page-publications">
+            <div class="page-inner">
+                <div class="page-heading">
+                    <span class="page-number">03</span>
+                    <h2 class="page-title">Publications</h2>
+                    <div class="page-line"></div>
+                </div>
+
+                <div class="content-card">
+                    <p class="placeholder-text">
+                        Your journal articles and conference papers
+                        will be added here.
+                    </p>
                 </div>
             </div>
         </section>
 
-        <section class="section" id="contact">
-            <div class="section-container">
-                <p class="section-label">Contact</p>
-                <h2 class="section-title">Get in Touch</h2>
+        <!-- TEACHING -->
 
-                <div class="placeholder">
-                    Your professional email and academic links will be added here.
+        <section class="page" id="page-teaching">
+            <div class="page-inner">
+                <div class="page-heading">
+                    <span class="page-number">04</span>
+                    <h2 class="page-title">Teaching</h2>
+                    <div class="page-line"></div>
+                </div>
+
+                <div class="content-card">
+                    <p class="placeholder-text">
+                        Your courses, institutions and teaching experience
+                        will be added here.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ACTIVITIES -->
+
+        <section class="page" id="page-activities">
+            <div class="page-inner">
+                <div class="page-heading">
+                    <span class="page-number">05</span>
+                    <h2 class="page-title">Scientific Activities</h2>
+                    <div class="page-line"></div>
+                </div>
+
+                <div class="content-card">
+                    <p class="placeholder-text">
+                        Your conferences, reviewing activities,
+                        projects and scientific collaborations
+                        will be added here.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+
+        <section class="page" id="page-contact">
+            <div class="page-inner">
+                <div class="page-heading">
+                    <span class="page-number">06</span>
+                    <h2 class="page-title">Contact</h2>
+                    <div class="page-line"></div>
+                </div>
+
+                <div class="content-card">
+                    <p class="placeholder-text">
+                        Your professional email, LinkedIn,
+                        Google Scholar and other links will be added here.
+                    </p>
                 </div>
             </div>
         </section>
 
     </main>
 
-    <footer>
+    <footer class="footer">
         © 2026 Oussama BEY — Academic Portfolio
     </footer>
+
+    <script>
+        function switchPage(pageName) {
+            document.querySelectorAll(".page").forEach(function(page) {
+                page.classList.remove("active");
+            });
+
+            document.querySelectorAll(".nav-tab").forEach(function(tab) {
+                tab.classList.remove("active");
+            });
+
+            const selectedPage =
+                document.getElementById("page-" + pageName);
+
+            const selectedTab =
+                document.querySelector(
+                    '.nav-tab[data-page="' + pageName + '"]'
+                );
+
+            if (selectedPage) {
+                selectedPage.classList.add("active");
+            }
+
+            if (selectedTab) {
+                selectedTab.classList.add("active");
+            }
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        }
+
+        document.querySelectorAll(".nav-tab").forEach(function(tab) {
+            tab.addEventListener("click", function() {
+                switchPage(tab.dataset.page);
+            });
+        });
+    </script>
 
 </body>
 </html>
